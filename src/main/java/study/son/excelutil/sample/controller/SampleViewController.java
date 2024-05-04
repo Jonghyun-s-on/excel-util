@@ -6,6 +6,6 @@ import org.springframework.stereotype.Controller;
 public class SampleViewController {
 
     public String index() {
-        return "";
+        return "index";
     }
 }

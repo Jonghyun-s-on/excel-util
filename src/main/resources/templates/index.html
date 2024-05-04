@@ -2,9 +2,21 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Index</title>
 </head>
 <body>
-  <input type="file">
+  <div>
+    <input type="file">
+  </div>
+<script>
+  fetch('http://localhost:8080/samples/download', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // body: JSON.stringify({}),
+  })
+  .then((response) => console.log(response))
+</script>
 </body>
 </html>
