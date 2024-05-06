@@ -19,9 +19,9 @@ public class SampleRestController {
     }
 
     @PostMapping("/samples/download")
-    public ResponseEntity<ByteArrayOutputStream> downloadExcel() {
+    public ResponseEntity<byte[]> downloadExcel() {
         ByteArrayOutputStream byteArrayOutputStream = sampleDownloadService.downloadExcel();
-        return ResponseEntity.ok().headers(createHeaders()).body(byteArrayOutputStream);
+        return ResponseEntity.ok().headers(createHeaders()).body(byteArrayOutputStream.toByteArray());
     }
 
     private HttpHeaders createHeaders() {

@@ -1,14 +1,16 @@
 package study.son.excelutil.sample.dto;
 
 import lombok.Builder;
-import lombok.Data;
-
+import lombok.Getter;
+import study.son.excelutil.util.excel.ExcelColumn;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
 @Builder
 public class ExcelDownloadDto {
+    @ExcelColumn(fieldName = "number")
     private int number;
+    @ExcelColumn(fieldName = "content")
     private String content;
     private LocalDateTime createdDateTime;
 }
