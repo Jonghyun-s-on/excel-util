@@ -12,5 +12,6 @@ public class ExcelDownloadDto {
     private int number;
     @ExcelColumn(fieldName = "content")
     private String content;
+    @ExcelColumn(fieldName = "createdDateTime")
     private LocalDateTime createdDateTime;
 }

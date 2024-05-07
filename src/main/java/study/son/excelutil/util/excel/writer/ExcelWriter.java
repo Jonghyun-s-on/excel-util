@@ -8,6 +8,7 @@ import study.son.excelutil.util.excel.ExcelMetaData;
 
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class ExcelWriter {
     private String NEW_SHEET_NAME = "DATA";
     private ExcelMetaData excelMetaData;
     private List<String> fieldNames = new ArrayList<>();
+    private DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public <T> ExcelWriter(Class<T> type) {
         this.excelMetaData = new ExcelMetaData(type);
@@ -51,7 +53,8 @@ public class ExcelWriter {
             if (f.getType() == int.class) {
                 cell.setCellValue(f.getInt(d));
             } else if (f.getType() == LocalDateTime.class) {
-                cell.setCellValue((LocalDateTime) f.get(d));
+                LocalDateTime dateTime = (LocalDateTime) f.get(d);
+                cell.setCellValue(dateTime.format(DATE_TIME_FORMAT));
             } else {
                 cell.setCellValue((String) f.get(d));
             }
