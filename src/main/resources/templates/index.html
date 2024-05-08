@@ -6,26 +6,52 @@
 </head>
 <body>
   <div>
-    <input type="file">
+    <button type="button" onclick="downloadExcel()">download excel</button>
+  </div>
+  <div>
+    <button type="button" onclick="downloadLargeExcel()">download large excel</button>
   </div>
 <script>
-  fetch('http://localhost:8080/samples/download', {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    // body: JSON.stringify({}),
-  })
-  .then(response => response.blob())
-  .then(blob => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'sample.xlsx';
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-  })
+  function downloadExcel() {
+    fetch('http://localhost:8080/samples/download', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({}),
+    })
+    .then(response => response.blob())
+    .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sample.xlsx';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    })
+  }
+
+   function downloadLargeExcel() {
+    fetch('http://localhost:8080/samples/download/large', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({}),
+    })
+    .then(response => response.blob())
+    .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sample.zip';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    })
+  }
+
 </script>
 </body>
 </html>
